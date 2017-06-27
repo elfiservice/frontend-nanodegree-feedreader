@@ -27,16 +27,41 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+
+        var testParams = allFeeds;
+        for (var i = 0; i < testParams.length; i++) {
+
+            (function (testSpec) {
+                /* TODO: Write a test that loops through each feed
+                * in the allFeeds object and ensures it has a URL defined
+                * and that the URL is not empty.
+                */
+                it('url are defined to ' + testSpec.name + ' index ' + i, function () {
+                    //test url is defined
+                    expect(testSpec.url).toBeDefined();
+                    console.log(expect(testSpec.url).toBeDefined());
+                });
+                it('and url are NOT empty to ' + testSpec.name  + ' index ' + i, function () {
+                    //test url not empty
+                    expect(testSpec.url).not.toBe('');
+                });
+                /* TODO: Write a test that loops through each feed
+                * in the allFeeds object and ensures it has a name defined
+                * and that the name is not empty.
+                */
+                it('NAME are defined to ' + testSpec.name  + ' index ' + i, function () {
+                    //test Name is defined
+                    expect(testSpec.name).toBeDefined();
+                });
+                it('and NAME are NOT empty to ' + testSpec.name  + ' index ' + i, function () {
+                    //test Name not empty
+                    expect(testSpec.name).not.toBe('');
+                });
+            })(testParams[i]);
+
+        }; 
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
     });
 
 
