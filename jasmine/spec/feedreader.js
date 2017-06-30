@@ -31,7 +31,7 @@ $(function() {
         var testParams = allFeeds;
         for (var i = 0; i < testParams.length; i++) {
 
-            (function (testSpec) {
+            var testSpec = testParams[i];
                 /* TODO: Write a test that loops through each feed
                 * in the allFeeds object and ensures it has a URL defined
                 * and that the URL is not empty.
@@ -57,9 +57,9 @@ $(function() {
                     //test Name not empty
                     expect(testSpec.name).not.toBe('');
                 });
-            })(testParams[i]);
+         
 
-        }; 
+        }
 
 
     });
