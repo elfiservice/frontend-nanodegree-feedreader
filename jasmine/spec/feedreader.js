@@ -26,55 +26,47 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
-
-        var testParams = allFeeds;
-        for (var i = 0; i < testParams.length; i++) {
-
-            var testSpec = testParams[i];
-                /* TODO: Write a test that loops through each feed
-                * in the allFeeds object and ensures it has a URL defined
-                * and that the URL is not empty.
-                */
-                it('url are defined to ' + testSpec.name + ' index ' + i, function () {
-                    //test url is defined
-                    expect(testSpec.url).toBeDefined();
-                    console.log(expect(testSpec.url).toBeDefined());
-                });
-                it('and url are NOT empty to ' + testSpec.name  + ' index ' + i, function () {
-                    //test url not empty
-                    expect(testSpec.url).not.toBe('');
-                });
-                /* TODO: Write a test that loops through each feed
-                * in the allFeeds object and ensures it has a name defined
-                * and that the name is not empty.
-                */
-                it('NAME are defined to ' + testSpec.name  + ' index ' + i, function () {
-                    //test Name is defined
-                    expect(testSpec.name).toBeDefined();
-                });
-                it('and NAME are NOT empty to ' + testSpec.name  + ' index ' + i, function () {
-                    //test Name not empty
-                    expect(testSpec.name).not.toBe('');
-                });
-         
-
-        }
-
-
+        /* TODO: Write a test that loops through each feed
+         * in the allFeeds object and ensures it has a URL defined
+         * and that the URL is not empty.
+         */
+        it('all url are defined and Not empty', function () {
+            //test url is defined
+            for (var i = 0; i < allFeeds.length; i++) {
+                var testSpec = allFeeds[i];
+                expect(testSpec.url).toBeDefined();
+                expect(testSpec.url).not.toBe('');
+             }
+        });
+        /* TODO: Write a test that loops through each feed
+         * in the allFeeds object and ensures it has a name defined
+         * and that the name is not empty.
+         */
+        it('all Names are defined and not empty', function () {
+            //test url is defined
+            for (var i = 0; i < allFeeds.length; i++) {
+                var testSpec = allFeeds[i];
+                expect(testSpec.name).toBeDefined();
+                expect(testSpec.name).not.toBe('');
+             }
+        });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu', function() {
+        var bodyElemnt,
+            hasClassHidden;
+        beforeEach(function() {
+            bodyElemnt = $('body');
+            hasClassHidden = bodyElemnt.hasClass('menu-hidden');            
+        });
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
             it('menu element is hidden by default', function() {
-                var bodyElemnt = $('body');
-                var hasClassHidden = bodyElemnt.hasClass('menu-hidden');
                 expect(hasClassHidden).toBe(true);
             });
 
@@ -85,14 +77,12 @@ $(function() {
           */
             it('display menu after click', function() {
                 $('.menu-icon-link').trigger('click');
-                var bodyElemnt = $('body');
-                var hasClassHidden = bodyElemnt.hasClass('menu-hidden');
+                hasClassHidden = bodyElemnt.hasClass('menu-hidden');
                 expect(hasClassHidden).toBe(false);
             });
             it('display menu after click Again', function() {
                 $('.menu-icon-link').trigger('click');
-                var bodyElemnt = $('body');
-                var hasClassHidden = bodyElemnt.hasClass('menu-hidden');
+                hasClassHidden = bodyElemnt.hasClass('menu-hidden');
                 expect(hasClassHidden).toBe(true);
             });
     });
@@ -120,7 +110,7 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        var feed1, feed2;
+       var feed1, feed2;
        beforeEach(function(done) { //this makes sure the feed is loaded before each test
             loadFeed(0, function() { //loading of first feed
                 feed1 = $('.feed').html();
